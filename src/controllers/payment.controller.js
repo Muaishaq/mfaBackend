@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const { v4: uuidv4 } = require('uuid');
 const prisma = require('../config/db');
 const asyncHandler = require('../utils/asyncHandler');
 const { initiatePayment, verifyPayment } = require('../services/paystack.service');
@@ -55,7 +54,7 @@ const initiate = asyncHandler(async (req, res) => {
   }
 
   // Generate unique reference
-  const reference = `TECHMFA-${uuidv4()}`;
+  const reference = `TECHMFA-${crypto.randomUUID()}`;
 
   // Create pending payment record
   await prisma.payment.create({
