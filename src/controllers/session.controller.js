@@ -1,10 +1,10 @@
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 const prisma = require('../config/db');
 const asyncHandler = require('../utils/asyncHandler');
 
 // Generate a unique Jitsi room name
 const generateRoomName = (academy) => {
-  const short = uuidv4().split('-')[0];
+  const short = crypto.randomUUID().split('-')[0];
   return `mfa-${academy}-${short}`;
 };
 
